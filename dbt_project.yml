@@ -5,7 +5,19 @@
 name: 'my_new_project'
 version: '1.0.0'
 config-version: 2
+sources:
+  - name: mydatasource
+    database: solar-cab-343813
+    freshness: # default freshness
+      warn_after: {count: 1, period: hour}
+      error_after: {count: 24, period: hour}
+    loaded_at_field: created_date
 
+    tables:
+      - name: testtable
+        freshness: # make this a little more strict
+          warn_after: {count: 6, period: hour}
+          error_after: {count: 12, period: hour}
 # This setting configures which "profile" dbt uses for this project.
 profile: 'default'
 
